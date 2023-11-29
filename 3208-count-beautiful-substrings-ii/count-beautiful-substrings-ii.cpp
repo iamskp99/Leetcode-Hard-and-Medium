@@ -1,36 +1,26 @@
 class Solution {
 public:
-    #define ll long long
-    
-    bool isVowel(char ch) {
-        return ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u';
-    }
-    
-    ll beautifulSubstrings(std::string s, int k) {
-        ll vowel = 0, cons = 0, result = 0;
-        unordered_map<ll, unordered_map<ll, ll>> mp;
-        mp[0][0] = 1;
+    long long beautifulSubstrings(string s, int k) {
+        int jump;
+        for (jump = 1; jump <= k; ++jump)
+            if ((jump * jump) % k == 0)
+                break;
+        jump *= 2;
         
+        string vowels = "aeiou";
 
-        for (char ch: s) {
-            
-            if(isVowel(ch)) {
-                vowel++;
-            } else {
-                cons++;
-            }
-            
-      
-            ll pSum = vowel - cons;
-            for (auto& [z, count]: mp[pSum]) {
-                if ((vowel%k - z) * (vowel%k - z) % k == 0) 
-                    result += count;
-            }
-
-            ++mp[vowel - cons][vowel%k];
-
+        unordered_map<int, vector<int>> count;
+        count[0].push_back(0);
+        
+        long long result = 0;
+        int d = 0;
+        for (int i = 1; i < s.length() + 1; ++i) {
+            (vowels.find(s[i - 1]) != string::npos) ? d++ : d--;
+            for (int j : count[d])
+                result += ((i - j) % jump == 0);
+            count[d].push_back(i);
         }
-        
+
         return result;
     }
 };
