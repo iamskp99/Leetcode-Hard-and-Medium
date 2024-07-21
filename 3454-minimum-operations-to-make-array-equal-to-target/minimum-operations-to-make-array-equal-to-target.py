@@ -2,8 +2,6 @@ import sys
 sys.setrecursionlimit(10**5)
 class Solution:
     def rec(self,l,som,choice):
-        # print(l)
-        # return 0 
         if len(l) == 0 or choice == 2:
             return 0
 
