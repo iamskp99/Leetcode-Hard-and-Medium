@@ -28,14 +28,12 @@ class Solution:
                 else:
                     while len(stack) > 0:
                         ind = stack.pop()
-                        if ind in visited:
-                            stack = []
-                            break
 
                         visited.add(ind)
                         ans[ind] = 'L'
 
                 prev = -1
+                stack = []
 
             elif dominoes[i] == 'R':
                 ans[i] = 'R'
