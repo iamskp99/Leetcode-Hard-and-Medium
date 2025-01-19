@@ -7,14 +7,6 @@ class Solution:
             prev += x
             p.append(prev)
 
-        i,prev = n-1,0
-        while i > -1:
-            x = nums[i]
-            prev += x
-            s.append(prev)
-            i -= 1
-        
-        s = s[::-1]
         i,stack = n-1,[]
         while i > -1:
             x = nums[i]
