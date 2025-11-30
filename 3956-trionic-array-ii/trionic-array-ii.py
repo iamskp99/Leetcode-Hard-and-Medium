@@ -12,7 +12,6 @@ class Solution:
                 if inc2[-1] < i:
                     i2 += i
                     inc2.append(i)
-                    # print(inc1,dec,inc2,i1+d+i2,"HII")
                     if len(inc1) > 1 and len(inc2) > 0 and len(dec) > 0:
                         som = max(i2,inc2[0])
                         cur = 0
@@ -21,7 +20,6 @@ class Solution:
                             for j in range(len(inc1)-2):
                                 cur += inc1[j]
                                 now = max(now,i1-cur)
-                                # ans = max(ans,(i1-cur)+d+som)
 
                         ans = max(ans,now+d+som)
 
@@ -35,7 +33,7 @@ class Solution:
                     i1,i2 = val+i2,0
                     inc1,dec,inc2 = [val]+inc2,[i],[]
                     now = -1*(10**17)
-                # print(i,inc1,dec,inc2,"HII_1")
+                
                 continue
             
             if len(inc1) and len(dec):
@@ -53,7 +51,6 @@ class Solution:
                     inc2.append(i)
                 
                 if len(inc1) > 1 and len(inc2) > 0 and len(dec) > 0:
-                    # print(inc1,dec,inc2,i1+d+i2,"HII")
                     som = max(i2,inc2[0])
                     cur = 0
                     if now == -1*(10**17):
@@ -61,11 +58,9 @@ class Solution:
                         for j in range(len(inc1)-2):
                             cur += inc1[j]
                             now = max(now,i1-cur)
-                            # ans = max(ans,(i1-cur)+d+som)
 
                     ans = max(ans,now+d+som)
                 
-                # print(i,inc1,dec,inc2,"HII_2")
                 continue
 
             if len(inc1):
@@ -79,7 +74,6 @@ class Solution:
                     dec.append(i)
                     d += i
 
-                # print(i,inc1,dec,inc2,"HII_3")
                 now = -1*(10**17)
                 continue
             
