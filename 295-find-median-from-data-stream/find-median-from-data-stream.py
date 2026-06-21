@@ -7,37 +7,36 @@ class MedianFinder:
         heapq.heapify(self.h2)
 
     def addNum(self, num: int) -> None:
-        if len(self.h1) == 0 and len(self.h2) == 0:
-            heapq.heappush(self.h2,num)
-            return
-
-        if len(self.h2) == len(self.h1):
-            v1 = -1*self.h1[0]
-            if v1 > num:
-                heapq.heappop(self.h1)
-                heapq.heappush(self.h1,-1*num)
-                heapq.heappush(self.h2,v1)
-
-            else:
+        if (len(self.h1)+len(self.h2))%2:
+            if len(self.h2) > 0 and self.h2[0] < num:
                 heapq.heappush(self.h2,num)
+            else:
+                if num < -1*self.h1[0]:
+                    ele = -1*heapq.heappop(self.h1)
+                    heapq.heappush(self.h2,ele)
+                    heapq.heappush(self.h1,-1*num)
+                else:
+                    heapq.heappush(self.h2,num)
+                
+        else:
+            if len(self.h1) == 0:
+                heapq.heappush(self.h1,-1*num)
+                return 
 
-            return 
-
-        v1 = self.h2[0]
-        if num < v1:
-            heapq.heappush(self.h1,-1*num)
-            return 
-
-        heapq.heappop(self.h2)
-        heapq.heappush(self.h2,num)
-        heapq.heappush(self.h1,-1*v1)
-        return 
+            if self.h2[0] > num:
+                heapq.heappush(self.h1,-1*num)
+                # self.h1.append(-1*num)
+            else:
+                ele = -1*heapq.heappop(self.h2)
+                heapq.heappush(self.h1,ele)
+                heapq.heappush(self.h2,num)
+        
 
     def findMedian(self) -> float:
-        if len(self.h2) != len(self.h1):
-            return self.h2[0]
-
-        return ((-1*self.h1[0])+self.h2[0])/2
+        if (len(self.h1)+len(self.h2))%2:
+            return -1*self.h1[0]
+        else:
+            return (-1*self.h1[0]+self.h2[0])/2
         
 
 
