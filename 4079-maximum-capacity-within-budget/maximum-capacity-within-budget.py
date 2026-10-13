@@ -18,9 +18,6 @@ class Solution:
 
         ans = 0 
         i = n-1
-        # print(costs)
-        # print(capacity)
-        # print(pcapacity)
         while i > -1:
             res = capacity[i]
             remaining = budget-costs[i]
