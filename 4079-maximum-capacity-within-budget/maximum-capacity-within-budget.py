@@ -6,7 +6,6 @@ class Solution:
             combined.append((costs[i],capacity[i]))
         combined.sort(key= lambda x: (x[0],-x[1]))
         capacity,costs = [],[]
-        print(combined)
         for i in range(n):
             costs.append(combined[i][0])
             capacity.append(combined[i][1])
